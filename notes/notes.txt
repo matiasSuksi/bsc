@@ -1,0 +1,4 @@
+Hakulauseke: 
+1. (memory allocat*) AND (technique* OR method* OR solution*) AND embedded AND (research OR report)
+
+2. embedded AND "memory manag*"
