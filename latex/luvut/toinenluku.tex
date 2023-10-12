@@ -7,7 +7,12 @@ ja millaisista muistialueista ohjelman muisti koostuu. Huomioitavaa on, että se
 
 Ohjelman muisti jakautuu erilaisiin muistialueisin. Koodisegmentti sisältää varsinaisesti ajettavan ohjelman binäärin eli ohjelmatiedoston, jonka prosessori suorittaa. Lisäksi ohjelmalla on olemassa datasegmentti, joka koostuu alustetusta datasta ja alustamattomasta datasta. Alustetun datan alueeseen kuuluvat globaalit ja staattiset muuttujat sekä vakioarvoiset muuttujat, joille on alustettu jokin arvo. Alustamattomassa data-alueessa on kaikki alustamaton data eli muuttujat, jotka ovat esitelty (declare), mutta joille ei ole annettu mitään arvoa.\cite{mmic2010} Näiden muistialueiden data allokoidaan ajettavan ohjelman muistiin jo käännön aikana (compile time) eli ohjelmointikielen kääntäjän kääntäessä lähdekoodin. Ohjelmalla on lisäksi kaksi muistialuetta pino ja keko, joiden data allokoidaan vasta ajoaikana (runtime) eli kun ohjelman itse suorittaminen aloitetaan.
 
-/**Tähän kohtaan kuva muistista**/
+\begin{figure}[tbh]
+{\begin{centering}
+\includegraphics[width=0.6\textwidth]{kuvat/muistin_rakenne.pdf}
+\par\end{centering}}
+\caption{Ohjelman muistin rakenne\cite{mmic2010} (suomennettu kuva lähteestä)}
+\end{figure}
 
 /**Koodin pätkä**/
 
