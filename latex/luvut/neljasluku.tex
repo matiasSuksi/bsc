@@ -1,14 +1,29 @@
 \chapter{Muistinhallinan tekniikoita ja rakenteita} \label{Neljäs luku}
 
-Tässä luvussa tullaan esittelemään yleisiä muistinhallinan tekniikoita, joita usein hyödynnetään sulautetuissa järjestelmissä.
+Tässä luvussa tullaan esittelemään yleisiä muistinhallinan tekniikoita, joita voidaan hyödyntää sulautetuissa järjestelmissä.
 
-\section{Fixed-size Block Allocation}
+\section{Rengaspuskuri}
+
+Rengaspuskuri (engl. \textit{circular buffer} on järjestetty tietorakenne, jossa viimeisen alkion jälkeen palataan takaisin ensimmäiseen alkioon. Yleensä rengaspuskuri toteutetaan, joko järjestettynä taulukkona tai linkitettynä listana, jonka viimeinen alkio osoittaa takaisin ensimmäiseen alkioon. Rengaspuskurin etuindeksi (engl. \text{front index}) osoittaa tyhjän paikan, johon seuraavaksi lisättävä alkio laitetaan. Takaindeksi (engl. \text{back index}) osoittaa seuraavaksi poistettavan alkion paikan. Rengaspuskurit ovat erittäin yleisiä tietorakenteita juuri reealiaikaisissa sulautetuissa järjestelmissä, joissa useat prosessit kommunikoivat keskenään. Rengaspuskuri toimii väliaikaisena muistina prosesseille, jolloin prosessit voivat toimia asynkronisesti.\cite{c2015book}
+
+Seuraavaksi esitellään yksinkertaisen kokonaislukuja sisältävän rengaspuskurin totetus.
+
+\begin{algorithm}[tbh]
+\begin{lstlisting}[language=C]
+typedef struct RengasPuskuri_t {
+    int* taulukko;  //Osoitin taulukkoon
+    int koko;       //Maksimikoko
+    int alkioiden_lukumaara;    //
+    int ensimmainen_alkio;  //Indeksi puskurin alkuun
+    int viimeinen_alkio;    //Indeksi puskurin loppuun
+}
+\end{lstlisting}
+\caption{Rengaspuskurin implementaatio\label{alg:Rengaspuskuri}}
+\end{algorithm}
+
 \section{Buddy Memory Allocation}
 \section{Memory Pooling}
-\section{Circular Buffer}
-
-An introduction to the C Programming Language, 15.4 Circular Buffers (Tim Bailey)
-
+\section{Fixed-size Block Allocation}
 \section{Memory Banks}
 \section{Object Pools}
 \section{Slab allocation}

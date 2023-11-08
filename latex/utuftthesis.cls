@@ -242,7 +242,7 @@
 %% !! Update these only if the document's main language is not finnish or english !!
 \newcommand{\ye@r}{\the\year}
 \newcommand{\m@nth}{\the\month}
-\newcommand{\p@blab}{Labra}
+\newcommand{\p@blab}{}
 \newcommand{\p@blaben}{Laboratory}
 \newcommand{\s@pervisors}{none}
 \newcommand{\k@ywords}{not set}
