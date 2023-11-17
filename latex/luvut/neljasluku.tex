@@ -23,10 +23,20 @@ typedef struct RengasPuskuri_t {
 
 \section{Segmentoitu pino}
 
-Suurin osa ohjelmista käyttävät aikaisemmassa luvussa esiteltyä pinoa yhtenä muistirakenteena. Tällaista pinoa voidaan tarkemmin nimittää jatkuvaksi pinoksi (engl. \textit{contiguous stack}), sillä tämäntapainen pino varaa yhtenäisen muistialueen ohjelman muistiavaruudesta. Tällaisella perinteisellä jatkuvalla pinolla on kuitenkin heikkouksia sulautetuissa järjestelmissä. Muisti allokoidaan pinolle staattisesti, jolloin pinolla on ennaltamääritetty maksimikoko. Lisäksi jatkuvan pinon ylivuoto (engl. \textit{stackoverflow}) on vaikea havaita, sillä monesti sulautetuissa järjestelmissä käytettävissä matalan tason mikrokontrollereista puuttuu kokonaan muistinsuojausyksikkö (engl. \textit{MPU, memory protection unit}), jolla ylivuoto voitaisiin havaita. Lisäksi muut vaihtoehtoiset menetelmät ylivuodon tunnistamiseen ovat monesti muistinkäytön tehokkuuden kannalta hyvin tehottomia, ja joita monet yleiset sulautetut kääntäjät eivät tue tai tukevat hyvin heikosti. Näistä kääntäjistä esimerkkejä ovat ARM GNU ja LLVM.\cite{bsstes@2023}
+Suurin osa ohjelmista käyttävät aikaisemmassa luvussa esiteltyä pinoa yhtenä muistirakenteena. Tällaista pinoa voidaan tarkemmin nimittää jatkuvaksi pinoksi (engl. \textit{contiguous stack}), sillä tämäntapainen pino varaa yhtenäisen muistialueen ohjelman muistiavaruudesta. Tällaisella perinteisellä jatkuvalla pinolla on kuitenkin heikkouksia sulautetuissa järjestelmissä. Muisti allokoidaan pinolle staattisesti eli jo ennen ohjelmakoodin kääntöä, jolloin pinon maksimikoko ajonaikana on ennaltamääritety. Lisäksi jatkuvan pinon ylivuoto (engl. \textit{stackoverflow}) on vaikea havaita, sillä monesti sulautetuissa järjestelmissä käytettävissä matalan tason mikrokontrollereista puuttuu kokonaan muistinsuojausyksikkö (engl. \textit{MPU, memory protection unit}), jolla ylivuoto voitaisiin havaita. Lisäksi muut vaihtoehtoiset menetelmät ylivuodon tunnistamiseen ovat monesti muistinkäytön tehokkuuden kannalta hyvin tehottomia, ja joita monet yleiset sulautetut ohjelmointikielien kääntäjät eivät tue tai tukevat hyvin heikosti. Näistä kääntäjistä esimerkkejä ovat ARM GNU ja LLVM.\cite{bsstes@2023}
 
-Jatkuvan pinon vastapainona on segmentoitu pino (engl. \textit{segmented stack}), joka eroaa jatkuvasta pinosta niin, että pino on jaettu pienempiin erillisiin segmentteihin, jolloin säikeet ja funktiot sekä niiden data allokoidaan omissa segmenteissään.\cite{bsstes@2023}
+Jatkuvan pinon vastapainona on segmentoitu pino (engl. \textit{segmented stack}), joka eroaa jatkuvasta pinosta niin, että pino on jaettu pienempiin erillisiin pienempiin pinoihin (engl. \textit{stacklet}), jolloin säikeet ja funktiot sekä niiden data allokoidaan omissa pinoissaan. Nämä pienemmät pinot allokoidaan dynaamisesti keosta. Segmentoitu pino on harvoin käytetty muistirakenne, koska sillä on tunnetusti huono suorituskyky ja muistinkäyttö on tehotonta. Kuitenkin, monissa mikrokontrolleripohjaisissa järjestelmissä, joita sulautetuissa järjestelmissä paljon käytetään, nämä suorituskykyongelmat häviävät. Lisäksi pinon ylivuototilanteet on helppo selvittää, sillä pääpinon sisällä olevaa pinoa voidaan dynaamisella allokoinnilla kasvattaa tarpeen vaatiessa. Ajon aikainen kirjasto, joka allokoi ja vapauttaa segmentoidun pinon pienempiä pinoja, kohtelee tätä muistirakennetta linkitettynä listana.\cite{bsstes@2023}
 
+Segmentoitu pinon hyöty sulatetuissa järjestelmissä on aikaisemmin mainittujen haittojen häviäminen ja uusien muistin optimointimahdollisuuksien syntyminen.
+
+Heikkoudet häviävät:
+    1. Muistin fragmentoituminen vähenee
+    2. Koodikannan kontrollin paraneminen
+    3. Suorituskyvyn heikentyminen on hyväksyttävämpää
+
+Uusia mahdollisuuksia syntyy:
+    1. Muistinkäytön turvallisuus voidaan saavuttaa ohjelmointikielen kääntäjällä
+    2. Laitteisto- ja energiatehokkuus
 
 \section{Buddy Memory Allocation}
 \section{Memory Pooling}
