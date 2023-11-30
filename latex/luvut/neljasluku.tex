@@ -27,8 +27,6 @@ Suurin osa ohjelmista käyttävät aikaisemmassa luvussa esiteltyä pinoa yhten�
 
 Jatkuvan pinon vastapainona on segmentoitu pino (engl. \textit{segmented stack}), joka eroaa jatkuvasta pinosta niin, että pino on jaettu pienempiin erillisiin pienempiin pinoihin (engl. \textit{stacklet}), jolloin säikeet ja funktiot sekä niiden data allokoidaan omissa pinoissaan. Nämä pienemmät pinot allokoidaan dynaamisesti keosta. Segmentoitu pino on harvoin käytetty muistirakenne, koska sillä on tunnetusti huono suorituskyky ja muistinkäyttö on tehotonta. Kuitenkin, monissa mikrokontrolleripohjaisissa järjestelmissä, joita sulautetuissa järjestelmissä paljon käytetään, nämä suorituskykyongelmat häviävät. Lisäksi pinon ylivuototilanteet on helppo selvittää, sillä pääpinon sisällä olevaa pinoa voidaan dynaamisella allokoinnilla kasvattaa tarpeen vaatiessa. Ajonaikainen kirjasto, joka allokoi ja vapauttaa segmentoidun pinon pienempiä pinoja, kohtelee tätä muistirakennetta linkitettynä listana.\cite{bsstes@2023}
 
-%***KUVA TÄHÄN***
-
 Segmentoitu pinon hyöty sulatetuissa järjestelmissä on aikaisemmin mainittujen haittojen häviäminen ja uusien muistin optimointimahdollisuuksien syntyminen.
 
 ~\\
@@ -53,11 +51,11 @@ Uusia mahdollisuuksia syntyy:
 
 Buddy-algoritmi (engl. \textit{buddy algorithm}, myös \textit{buddy memory allocation}) on muistinhallintatekniikka, joka yhdistää ja jakaa muistilohkoja tarpeen vaatiessa. Jos jokin tehtävä vaatii suurta muistilohkoa, buddy-algoritmi yhdistää lohkot, joilla on peräkkäiset muistiosoitteet. Vastapuolisesti se jakaa suuren lohkon, ja antaa siitä osan tehtävällä joka pyytää käyttöönsä lisää muistia. Alkuperäisessä buddy-algoritmissa on ongelmana se, että kun yksi tehtävä vapauttaa lohkon, algoritmi pyrkii yhdistämään lohkon välittömästi muiden lohkojen kanssa. Kun yhdistäminen on tapahtunut ja jokin tehtävä pyytää uudelleen samaa lohkokokoa eikä sen kokoista lohkoa ole vapaana saatavilla, buddy-algoritmi joutuu jakamaan saman lohkon uudelleen. Kun tätä edestakaisin tapahtuvaa jakamista ja yhdistämistä tapahtuu usein, järjestelmän suorituskyky alkaa heikentymään, joka on hyvin huono asia sulautetussa järjestelmässä. Kuitenkin, buddy-algorimistä on useita versioita ja yksi näistä onkin hyvin käyttökelpoinen sulautetussa järjestelmässä. Tämä on niin sanottu laiska buddy-algoritmi. Laiska buddy-algoritmi (engl. \textit{lazy buddy algorithm}) on buddy-algroitmi, joka viivästyttää yhdistämisen ajankohtaa, kun tehtävä on vapauttanut lohkon. Yhdistämisprosessi tapahtuu ainoastaan silloin, kun se on aivan välttämätöntä. Tämä parantaa suorituskykyä, sillä nyt tätä edestakaisin tapahtuvaa yhdistämistä ja jakamista tapahtuu huomattavasti vähemmän.\cite{soeosmm@2009}
 
-%Knuth:in buddy-algoritmi\cite{tmesubomam@2011}
-
 %Jemalloc()-funktio on malloc()-funktiosta tehty muistinallokointifunktio, joka hyödyntää buddy-algoritmia.
 
 \section{Custom metodi/staattisen ja dynaamisen sekoitus}
-\section{Priority buffer}
 
-***TÄHÄHÄN***
+
+
+
+

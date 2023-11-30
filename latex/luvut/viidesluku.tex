@@ -1,6 +1,14 @@
-\chapter{Tekniikoiden soveltaminen sulautetuissa järjestelmissä} \label{Kuudes luku}
+\chapter{Muistinhallintatekniikoiden suorituskyvyn arvioiminen sulautetuissa järjestelmissä} \label{Kuudes luku}
 
-%Mitä asioita pitää ottaa huomioon suunniteltaessa muistinhallinta rakennetta?
-%Staattinen allokointi mielummin kuin dynaaminen, miksi?
+Tässä luvussa tullaan esittelemään menetelmiä miten sulautetun järjestelmän muistinkäyttöä voidaan mitata ja arvioida. Seuraavaksi esitellyt muistinkäytön tehokkuuden mittarit ovat työkaluja erityisesti reaaliaikaisten sulautettujen järjestelminen muistinkäytön mittaamiseen, mutta nämä ovat muutenkin varsin käyttökelpoisia yleisellä tasolla sulautetuissa järjestelmissä (kts. luku 3.1.1).
 
-%Listaa sulautettujen järjestelmien haasteet ja analysoi niiden pohjalta, tee jokin yhteenveto?
+***Tähän pohjustusta***\cite{tmtt@2006}
+
+\begin{itemize}
+\item{A. Suurimman-Pienimmän lohkon mittari                           (engl. \textit{Smallest-Biggest Block Metric (SBBM)})}
+\item{B. Vapaan lohkon mittari - Keskimääräisen koon mittari          (engl. \textit{Free Block Metric - Average Size (FBM-AS)})}
+\item{C. Sisäinen fragmentoituminen                                   (engl. \textit{Internal Fragmentation (IF)})}
+\item{D. Kustannuksen mittari                                         (engl. \textit{Cost Metric (CM)})}
+\item{E. Suorituskyvyn mittari                                        (engl. \textit{Performances Metric (PM)})}
+\end{itemize}
+
