@@ -1,1 +1,35 @@
 \chapter{Yhteenveto} \label{Yhteenveto}
+
+
+1. Sulautettujen järjestelmien luonteesta aiheutuvien haasteisiin vastaaminen
+    Kehittäjä joutuu pohtimaan toteutusta näiden asioiden pohjalta, ja niiden johdannaisista?
+        Virrankulutus
+        Fyysinenkoko --> Teho ja muistin määrä rajallinen
+                    --> 
+        Tuotantokustannukset --> Kompomentit yksinkertaisia --> vähemmän ominaisuuksia
+    Onko järjestelmä reaaliaikainen?
+
+    Riippuu täysin järjestelmän käyttötarkoituksesta --> Onko kyseessä auto, mikro, lentokone, ilmanvaihtokone --> Mitä nämä vaativat toteutukselta
+
+    Näitä kehittäjä joutuu pohtimaan ja kussakin tilanteessa tehokkain mahdollinen toteutus on täysin näistä seikoista kiinni eikä voida tehdä minkäänlaista yleistystä, mikä menetelmä/algoritmi on sulautetuissa järjestelmissä tehokkain.
+
+
+2. Millaisia algoritmeja?
+
+    Staattinen allokointi algoritmit ovat nopeampia kuin dynaamiset ja näin olisivat parempia sulautetuissa, joissa nopeus on monesti keskiössä, MUTTA
+
+    Staattisen allokoinnin suurin etu on se, että sillä kyetään vastaamaan reaaliaikaisuuden asettamiin haasteisiin parhaiten ja staattiset menetelmät ovat stabiilimpia kuin dynaamiset. Staattiset allokointimenetelmät ennaltaehkäisevät muistin fragmentoitumista.\cite{daroemmfera@2006}
+
+    Monet artikkelit lähtivät lähtökohdasta, että halutaan toteuttaa staattinen menetelmä, sillä ne ovat nopeampia. Kuitenkin monesti joudutaan tyytymään dynaamiseen ratkaisuun, sillä staattisen allokoinnin luonne aiheuttaa liian paljon rajoituksia tehokkaan ratkaisun tuottamiseen. Täten käsitellyt artikkelit ja niin myös tämä tutkielma, keskittyy dynaamisen menetelmiin, niiden kehittämiseen ja optimointiin.
+
+    Uusia tapoja tehostaa muistinkäyttöä, kääntäjän merkitys muistinkäytössä?
+
+    Artikkelien esittelemät algoritmit pyrkivät vähentämään fragmentoitumista dynaamisissa menetelmissä, yksi merkittävimmistä haasteista.
+
+
+KYSY JARI-MATILTA:
+
+    Voiko ikäänkuin mainita/viitata artikkeleihin, joita ei ole sisällytetty tutkielmaan, mutta on tutkittu ja luettu.
+
+
+    
