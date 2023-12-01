@@ -4,7 +4,7 @@ Tässä luvussa tullaan esittelemään yleisiä muistinhallinan tekniikoita, joi
 
 \section{Rengaspuskuri}
 
-Rengaspuskuri (engl. \textit{circular buffer} on järjestetty tietorakenne, jossa viimeisen alkion jälkeen palataan takaisin ensimmäiseen alkioon. Yleensä rengaspuskuri toteutetaan, joko järjestettynä taulukkona tai linkitettynä listana, jonka viimeinen alkio osoittaa takaisin ensimmäiseen alkioon. Rengaspuskurin etuindeksi (engl. \text{front index}) osoittaa tyhjän paikan, johon seuraavaksi lisättävä alkio laitetaan. Takaindeksi (engl. \text{back index}) osoittaa seuraavaksi poistettavan alkion paikan. Rengaspuskurit ovat erittäin yleisiä tietorakenteita juuri reealiaikaisissa sulautetuissa järjestelmissä, joissa useat prosessit kommunikoivat keskenään. Rengaspuskuri toimii väliaikaisena muistina prosesseille, jolloin prosessit voivat toimia asynkronisesti.\cite{c2015book}
+Rengaspuskuri (engl. \textit{circular buffer} on järjestetty tietorakenne, jossa viimeisen alkion jälkeen palataan takaisin ensimmäiseen alkioon. Yleensä rengaspuskuri toteutetaan, joko järjestettynä taulukkona tai linkitettynä listana, jonka viimeinen alkio osoittaa takaisin ensimmäiseen alkioon. Rengaspuskurin etuindeksi (engl. \text{front index}) osoittaa tyhjän paikan, johon seuraavaksi lisättävä alkio laitetaan. Takaindeksi (engl. \text{back index}) osoittaa seuraavaksi poistettavan alkion paikan. Rengaspuskurit ovat erittäin yleisiä tietorakenteita juuri reealiaikaisissa sulautetuissa järjestelmissä, joissa useat prosessit kommunikoivat keskenään. Rengaspuskuri toimii väliaikaisena muistina prosesseille, jolloin prosessit voivat toimia asynkronisesti toistensa suhteen.\cite{c2015book}
 
 Seuraavaksi esitellään yksinkertaisen kokonaislukuja sisältävän rengaspuskurin totetus.
 
@@ -27,23 +27,19 @@ Suurin osa ohjelmista käyttävät aikaisemmassa luvussa esiteltyä pinoa yhten�
 
 Jatkuvan pinon vastapainona on segmentoitu pino (engl. \textit{segmented stack}), joka eroaa jatkuvasta pinosta niin, että pino on jaettu pienempiin erillisiin pienempiin pinoihin (engl. \textit{stacklet}), jolloin säikeet ja funktiot sekä niiden data allokoidaan omissa pinoissaan. Nämä pienemmät pinot allokoidaan dynaamisesti keosta. Segmentoitu pino on harvoin käytetty muistirakenne, koska sillä on tunnetusti huono suorituskyky ja muistinkäyttö on tehotonta. Kuitenkin, monissa mikrokontrolleripohjaisissa järjestelmissä, joita sulautetuissa järjestelmissä paljon käytetään, nämä suorituskykyongelmat häviävät. Lisäksi pinon ylivuototilanteet on helppo selvittää, sillä pääpinon sisällä olevaa pinoa voidaan dynaamisella allokoinnilla kasvattaa tarpeen vaatiessa. Ajonaikainen kirjasto, joka allokoi ja vapauttaa segmentoidun pinon pienempiä pinoja, kohtelee tätä muistirakennetta linkitettynä listana.\cite{bsstes@2023}
 
-Segmentoitu pinon hyöty sulatetuissa järjestelmissä on aikaisemmin mainittujen haittojen häviäminen ja uusien muistin optimointimahdollisuuksien syntyminen.
-
+Seuraavaksi tullaan perustelemaan miksi segmentoidun pinon aikaisemmin mainitut heikkoudet häviävät.
 ~\\
-
-Heikkoudet häviävät:
 \begin{itemize}
     \item{Muistin fragmentoituminen vähenee: Mikrokontrolleripohjaisissa systeemeissä on usein tarpeetonta varata suurta vapaata tilaa segmentoituun pinoon, sillä usein suoritettavien ohjelmatiedostojen vedokset (engl. \textit{image}) linkitetään kokonaan käännön aikana, jolloin dynaamista linkitystä ei tapahdu. Lisäksi, takaisin kutsufunktiot voivat toimia erillisissä segmentoidun pinon pienissä pinoissa, koska käyttöjärjestelmäydin (engl. \textit{kernel}) on tietoinen segmentoidusta pinosta. 
     \item{Koodikannan kontrolli: Hyvin usein kehittäjillä on täysi pääsy koko ohjelman lähdekoodiin, jolloin segmentoitu pino on helppo implementoida koko järjestelmään eikä kehittäjän tarvitse tehdä toteutusta, joka toimisi yhdessä jatkuvan pinon kanssa. Tilanteissa, jossa ulkoinen oheislaitteiden toimittaja tarjoaa binäärikirjastoja laitteilleen, on helppoa tarjoata vain segmentoidulla pinolla käännetty versio. }
     \item{Suorituskyvyn heikentyminen on hyväksyttävämpää: Monesti mikrokontrolleripohjaisissa järjestelmissä hyvä suorituskyky ei synny pelkästään puhtaasta nopeudesta, vaan järjestelmän tilan ennustettavuudesta. Lisäksi nopeuden menetyksestä syntävät energiakustannukset voidaan kompensoida käyttämällä pienempää muistia.}
-\end{itemize}
+\end{itemize}\cite{bsstes@2023}
 ~\\
-Uusia mahdollisuuksia syntyy:
+Segmentoitu pino tuo esiin uusia mahdollisuuksia ja hyötyjä sulautetuissa järjestelmissä.
 \begin{itemize}
     \item{Muistinkäytön turvallisuus voidaan saavuttaa ohjelmointikielen kääntäjällä: Monesti sulautettujen järjestelmien mikrokontrollerit eivät sisällä muistinhallintayksikköä tai edes muistinsuojausyksikköä. Tällöin järjestelmän muistiosoitteavaruutta ei ole virtualisoitu, vaan järjestelmän tehtävät käyttävät fyysisiä muistiosoitteita eikä pinon ylivuodolle ole automaattista suojautumista. On suuri riski, että yhden pinon ylivuoto helposti korruptoi huomaamatta toisen pinon dataa toisessa tehtävässä. Muistiturvallisuus voidaan tässä tilanteessa pyrkiä saavuttamaan kääntäjän tarjoamilla pinon testauskäskyillä. Ennen funktioiden ajoa, nämä testauskäskyt testaavat pinokehyksien välisiä muistiosoitteita kirjoittamalla niihin tasaisten intervallien välein. Tämä menetelmä on tehokas segmentoidussa pinossa, kun pinokehykset ovat tarpeeksi isoja.
     \item{Laitteisto- ja energiatehokkuus: Segmentoitu pino mahdollistaa staattisen RAM-muistin (lyh. \textit{SRAM}) vähentämisen järjestelmässä, koska staattista RAM-muistia voidaan jakaa pinojen välillä väliaikaisesti. Staattisen RAM-muistin vähentämisellä on kaksi etua. Järjestelmän laitteiston valmistaminen on halvempaa, koska muistia on vähemmän, ja koska muistia on vähemmän niin järjestelmän virrankulutus pienenee. Myös, aikaisemmin mainittu usein jatkuvan pinon varaama tyhjä käyttämätön tila kuluttaa turhaa energiaa.
-\end{itemize}
-\cite{bsstes@2023}
+\end{itemize}\cite{bsstes@2023}
 
 ~\\
 
