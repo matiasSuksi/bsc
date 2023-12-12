@@ -10,9 +10,7 @@ Staattiset allokointimenetelmät ennaltaehkäisevät muistin fragmentoitumista\c
 
 \section{Suorituskyvyn mittaaminen}
 
-Seuraavaksi esitellyt muistinkäytön tehokkuuden mittarit ovat työkaluja erityisesti reaaliaikaisten sulautettujen järjestelminen muistinkäytön mittaamiseen, mutta nämä ovat muutenkin varsin käyttökelpoisia yleisellä tasolla sulautetuissa järjestelmissä (kts. luku 3.1.1).
-
-Tähän tekstiä.\cite{tmtt@2006}
+Seuraavaksi esitellyt muistinkäytön tehokkuuden mittarit ovat työkaluja erityisesti reaaliaikaisten sulautettujen järjestelminen dynaamisen muistinkäytön mittaamiseen, mutta nämä ovat muutenkin varsin käyttökelpoisia yleisellä tasolla sulautetuissa järjestelmissä (kts. luku 3.1.1).
 
 \begin{itemize}
 \item{A. Suurimman-Pienimmän lohkon mittari (engl. \textit{Smallest-Biggest Block Metric (SBBM)}): Kun sovellus saa pyynnön allokoida muistia, suurin huoli on löytää pyynnöllä tarpeeksi suuri yhtäjaksoinen muistilohko. Fragmentoitumisen takia on mahdollista, että tarpeeksi suurta vapaata muistilohkoa ei ole saatavilla, vaikka järjestelmän yhteenlaskettu vapaa muisti olisikin huomattavasti suurempi kuin pyydetyn muistilohkon koko. SBBM-mittari mittaa ohjelman ajon aikana suurimpien vapaiden lohkojen kokoja, ja lopuksi mittauksen jälkeen, se valitsee näistä lohkoista pienimmän lohkon.
