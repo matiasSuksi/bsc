@@ -1,12 +1,12 @@
 \chapter{Muistinhallintatekniikoiden analysointi ja suorituskyvyn mittaaminen sulautetuissa järjestelmissä} \label{Kuudes luku}
 
-Tässä luvussa pyritään pyritään summaamaan edellisen luvun menetelmiä sekä esitellään miten sulautetun järjestelmän muistinkäyttöä voidaan mitata ja arvioida.
+Tässä luvussa pyritään summaamaan edellisen luvun menetelmiä sekä esitellään miten sulautetun järjestelmän muistinkäyttöä voidaan mitata ja arvioida.
 
 \section{Tekniikoiden analysointi}
 
-Monet viitatut ja lähdekartoituksessa tutkitut artikkelit lähtevät lähtökohdasta, että halutaan toteuttaa staattinen menetelmä, sillä ne ovat tunnetusti nopeampia muistinkäytön kannalta kuin dynaamiset menetelmät. Staattisen allokoinnin suurin etu on se, että sillä kyetään vastaamaan reaaliaikaisuuden asettamiin haasteisiin parhaiten ja staattiset menetelmät ovat stabiilimpia kuin dynaamiset\cite{daroemmfera@2006}. Kuitenkin monesti joudutaan tyytymään dynaamiseen ratkaisuun, sillä staattisen allokoinnin luonne aiheuttaa liian paljon rajoituksia tehokkaan ratkaisun tuottamiseen. Täten käsitellyt artikkelit ja niin myös tämä tutkielma, keskittyy pääasiassa dynaamisiin menetelmiin sekä niiden kehittämiseen ja optimointiin. Tutkielmaa varten lähteistöä staattisista muistinhallintatekniikoista sekä hybridimalleista, jotka koostuivat dynaamisista ja staattisista piirteistä, löytyi, mutta ne sivuutettiin tutkielmasta niiden vaativuuden sekä kompleksisuuden takia.
+Monet viitatut ja lähdekartoituksessa tutkitut artikkelit lähtevät lähtökohdasta, että halutaan toteuttaa staattinen menetelmä, sillä ne ovat tunnetusti nopeampia muistinkäytön kannalta kuin dynaamiset menetelmät. Staattisen allokoinnin suurin etu on se, että sillä kyetään vastaamaan reaaliaikaisuuden asettamiin haasteisiin parhaiten ja staattiset menetelmät ovat stabiilimpia kuin dynaamiset\cite{daroemmfera@2006}. Kuitenkin monesti joudutaan tyytymään dynaamiseen ratkaisuun, sillä staattisen allokoinnin luonne aiheuttaa liian paljon rajoituksia tehokkaan ratkaisun tuottamiseen. Täten käsitellyt artikkelit ja niin myös tämä tutkielma, keskittyy pääasiassa dynaamisiin menetelmiin sekä niiden kehittämiseen ja optimointiin. Tutkielmaa varten lähteistöä staattisista muistinhallintatekniikoista sekä hybridimalleista, jotka koostuivat dynaamisista ja staattisista piirteistä löytyi, mutta ne sivuutettiin tutkielmasta niiden vaativuuden sekä kompleksisuuden takia.
 
-Staattiset allokointimenetelmät ennaltaehkäisevät muistin fragmentoitumista\cite{daroemmfera@2006}. Tämä fragmentoitumisen vähentäminen oli artikkeleissa yhtenä vallitsevana teemana, ja tämä tuntuu olevan keskeisenä ongelmana tehokkaan muistinhallinan kehittämisessä sulautetuissa järjestelmissä. Monissa artikkeleissa, jotka käsittelivät dynaamisia menetelmiä, fragmentoituminen listattiin merkittävänä ongelmana ja käsiteltävää dynaamista menetelmää esiteltiin siinä valossa, että miten menetelmä kykenee vastaamaan fragmentoitumisen ongelmiin. Lisäksi tutkielmassa löydettiin uusia keinoja mm. miten ohjelmointikielenkääntäjän avulla voidaan tehostaa sovelluksen muistinkäyttöä.
+Staattiset allokointimenetelmät ennaltaehkäisevät muistin fragmentoitumista\cite{daroemmfera@2006}. Tämä fragmentoitumisen vähentäminen oli artikkeleissa yhtenä vallitsevana teemana, ja tämä tuntuu olevan keskeisenä ongelmana tehokkaan muistinhallinnan kehittämisessä sulautetuissa järjestelmissä. Monissa artikkeleissa, jotka käsittelivät dynaamisia menetelmiä, fragmentoituminen listattiin merkittävänä ongelmana ja käsiteltävää dynaamista menetelmää esiteltiin siinä valossa, että miten menetelmä kykenee vastaamaan fragmentoitumisen ongelmiin. Lisäksi tutkielmassa löydettiin uusia keinoja mm. miten ohjelmointikielenkääntäjän avulla voidaan tehostaa sovelluksen muistinkäyttöä.
 
 \section{Suorituskyvyn mittaaminen}
 
@@ -21,7 +21,9 @@ Seuraavaksi esitellyt muistinkäytön tehokkuuden mittarit ovat työkaluja erity
 
 \item{D. Kustannuksen mittari (engl. \textit{Cost Metric (CM)}): CM-mittari mittaa järjestelmän tehokkuutta suhteessa saatavilla olevien resurssien määrään. CM-mittari mittaa kuinka paljon muistia järjestelmä vaatii sovelluksen tärkeimpien toiminnallisuuksien suorittamiseen.}
 
-\item{E. Suorituskyvyn mittari (engl. \textit{Performances Metric (PM)}): PM-mittari mittaa muistinhallintajärjestelmän suorituskykyä. Tämä mitataan laskemalla kuinka monta skannausta järjestelmä tarvitsee muistilohkoihin käsiksi pääsyyn. Eli tarkemmin tämä mittari mittaa kuinka nopeasti sovellus löytää pyyntöä vastaavan tarpeeksi ison muistilohkon järjestelmästä, kuinka nopeasti lohko voidaan vapauttaa ja asettaa takaisin oikealle paikalleen vapaiden lohkojen listaan.}\cite{tmtt@2006}
+\item{E. Suorituskyvyn mittari (engl. \textit{Performances Metric (PM)}): PM-mittari mittaa muistinhallintajärjestelmän suorituskykyä. Tämä mitataan laskemalla kuinka monta skannausta järjestelmä tarvitsee muistilohkoihin käsiksi pääsyyn. Eli tarkemmin tämä mittari mittaa kuinka nopeasti sovellus löytää pyyntöä vastaavan tarpeeksi ison muistilohkon järjestelmästä, kuinka nopeasti lohko voidaan vapauttaa ja asettaa takaisin oikealle paikalleen vapaiden lohkojen listaan.}
+
+\cite{tmtt@2006}
 
 \end{itemize}
 
