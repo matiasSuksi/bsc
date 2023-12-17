@@ -10,7 +10,7 @@ Staattiset allokointimenetelmät ennaltaehkäisevät muistin fragmentoitumista\c
 
 \section{Suorituskyvyn mittaaminen}
 
-Seuraavaksi esitellyt muistinkäytön tehokkuuden mittarit ovat työkaluja erityisesti reaaliaikaisten sulautettujen järjestelminen dynaamisen muistinkäytön mittaamiseen, mutta nämä ovat muutenkin varsin käyttökelpoisia yleisellä tasolla sulautetuissa järjestelmissä (kts. luku 3.1.1).
+Seuraavaksi esitellyt muistinkäytön tehokkuuden mittarit ovat työkaluja erityisesti reaaliaikaisten sulautettujen järjestelmien dynaamisen muistinkäytön mittaamiseen, mutta nämä ovat muutenkin varsin käyttökelpoisia yleisellä tasolla sulautetuissa järjestelmissä (kts. luku 3.1.1).
 
 \begin{itemize}
 \item{A. Suurimman-Pienimmän lohkon mittari (engl. \textit{Smallest-Biggest Block Metric (SBBM)}): Kun sovellus saa pyynnön allokoida muistia, suurin huoli on löytää pyynnöllä tarpeeksi suuri yhtäjaksoinen muistilohko. Fragmentoitumisen takia on mahdollista, että tarpeeksi suurta vapaata muistilohkoa ei ole saatavilla, vaikka järjestelmän yhteenlaskettu vapaa muisti olisikin huomattavasti suurempi kuin pyydetyn muistilohkon koko. SBBM-mittari mittaa ohjelman ajon aikana suurimpien vapaiden lohkojen kokoja, ja lopuksi mittauksen jälkeen, se valitsee näistä lohkoista pienimmän lohkon.}\cite{tmtt@2006}
@@ -21,7 +21,7 @@ Seuraavaksi esitellyt muistinkäytön tehokkuuden mittarit ovat työkaluja erity
 
 \item{D. Kustannuksen mittari (engl. \textit{Cost Metric (CM)}): CM-mittari mittaa järjestelmän tehokkuutta suhteessa saatavilla olevien resurssien määrään. CM-mittari mittaa kuinka paljon muistia järjestelmä vaatii sovelluksen tärkeimpien toiminnallisuuksien suorittamiseen.}\cite{tmtt@2006}
 
-\item{E. Suorituskyvyn mittari (engl. \textit{Performances Metric (PM)}): PM-mittari mittaa muistinhallintajärjestelmän suorituskykyä. Tämä mitataan laskemalla kuinka monta skannausta järjestelmä tarvitsee muistilohkoihin käsiksi pääsyyn. Eli tarkemmin tämä mittari mittaa kuinka nopeasti sovellus löytää pyyntöä vastaavan tarpeeksi ison muistilohkon järjestelmästä, kuinka nopeasti lohko voidaan vapauttaa ja asettaa takaisin oikealle paikalleen vapaiden lohkojen listaan.}\cite{tmtt@2006}
+\item{E. Suorituskyvyn mittari (engl. \textit{Performances Metric (PM)}): PM-mittari mittaa muistinhallintajärjestelmän suorituskykyä. Tämä mitataan laskemalla, kuinka monta skannausta järjestelmä tarvitsee muistilohkoihin käsiksi pääsyyn. Eli tarkemmin tämä mittari mittaa kuinka nopeasti sovellus löytää pyyntöä vastaavan tarpeeksi ison muistilohkon järjestelmästä, kuinka nopeasti lohko voidaan vapauttaa ja asettaa takaisin oikealle paikalleen vapaiden lohkojen listaan.}\cite{tmtt@2006}
 
 \end{itemize}
 
